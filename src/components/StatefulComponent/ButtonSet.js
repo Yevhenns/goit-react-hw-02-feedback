@@ -1,12 +1,12 @@
 import React from "react";
 
-const ButtonSet = ({ onIncrementGood, onIncrementNeutral, onIncrementBad }) => {
+const ButtonSet = ({ onIncrement }) => {
     return (
         <div>
         <h1>Please leave feedback</h1>
-        <button type="button" onClick={onIncrementGood}>good</button>
-        <button type="button" onClick={onIncrementNeutral}>neutral</button>
-        <button type="button" onClick={onIncrementBad}>bad</button>
+        <button type="button" name="good" onClick={onIncrement}>good</button>
+        <button type="button" name="neutral" onClick={onIncrement}>neutral</button>
+        <button type="button" name="bad" onClick={onIncrement}>bad</button>
     </div>) 
 }
 

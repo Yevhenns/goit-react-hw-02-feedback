@@ -9,43 +9,28 @@ export class StatefulComponent extends React.Component {
             good: 0,
             neutral: 0,
             bad: 0,
-            total: 0,
         }
     }
 
-    handleIncrementGood = () => {
+    onIncrement = (e) => {
         this.setState(prevState => ({
-            good: prevState.good + 1,
-            }));
-    };
-    
-    handleIncrementNeutral = () => {
-        this.setState(prevState => ({
-            neutral: prevState.neutral + 1,
-            }));
-    };
-    
-    handleIncrementBad = () => {
-        this.setState(prevState => ({
-            bad: prevState.bad + 1,
+            [e.target.name]: prevState[e.target.name] + 1,
             }));
     };
     
     countTotalFeedback = () => {
-        return this.state.good.value + this.state.neutral.value;
+        return this.state.good + this.state.neutral + this.state.bad;
     }
 
     render() {
         return <div>
             <ButtonSet
-                onIncrementGood={this.handleIncrementGood}
-                onIncrementNeutral={this.handleIncrementNeutral}
-                onIncrementBad={this.handleIncrementBad} />
+                onIncrement={this.onIncrement} />
             <Statistics
                 good={this.state.good}
                 neutral={this.state.neutral}
                 bad={this.state.bad}
-                total={this.countTotalFeedback.value} />            
+                total={this.countTotalFeedback()} />            
         </div>
     }
 }
