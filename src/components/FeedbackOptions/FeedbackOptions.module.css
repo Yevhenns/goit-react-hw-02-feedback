@@ -1,0 +1,9 @@
+.btn {
+    background-color: rgb(195, 226, 43);
+    padding: 10px;
+    font-size: 30px;
+    border-radius: 5px;
+}
+.btn:not(:last-child) {
+    margin-right: 20px;
+}

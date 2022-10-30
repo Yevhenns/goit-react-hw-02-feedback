@@ -1,9 +1,9 @@
-import { StatefulComponent } from "./StatefulComponent/StatefulComponent";
+import { Class } from "./Class";
 
 export const App = () => {
   return (
     <div>
-      <StatefulComponent />
+      <Class />
     </div>
   );
 };

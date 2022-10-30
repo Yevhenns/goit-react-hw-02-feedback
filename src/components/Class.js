@@ -1,10 +1,10 @@
 import React from "react";
-import FeedbackOptions from "./FeedbackOptions";
-import Notification from "./Notification";
-import Section from "./Section";
-import Statistics from "./Statistics";
+import FeedbackOptions from "./FeedbackOptions/FeedbackOptions";
+import Notification from "./Notification/Notification";
+import Section from "./Section/Section";
+import Statistics from "./Statistics/Statistics";
 
-export class StatefulComponent extends React.Component {
+export class Class extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -33,18 +33,19 @@ export class StatefulComponent extends React.Component {
                 <FeedbackOptions
                 options={Object.keys(this.state)}
                 onLeaveFeedback={this.onIncrement} />
-        </Section>
+            </Section>
+            
+            <Section
+            title={'Statistics'}>
             {this.countTotalFeedback() === 0 ?
                 <Notification
                     message={'There is no feedback'} /> :
-                <Section
-                    title={'Statistics'}>
-                    <Statistics
-                        good={this.state.good}
-                        neutral={this.state.neutral}
-                        bad={this.state.bad}
-                        total={this.countTotalFeedback()}
-                        positivePercentage={this.countPositiveFeedbackPercentage() || 0} />
-                </Section>} </>
+                <Statistics
+                    good={this.state.good}
+                    neutral={this.state.neutral}
+                    bad={this.state.bad}
+                    total={this.countTotalFeedback()}
+                    positivePercentage={this.countPositiveFeedbackPercentage() || 0} />}
+            </Section> </>
     }
 }
