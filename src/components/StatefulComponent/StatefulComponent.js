@@ -1,5 +1,7 @@
 import React from "react";
-import ButtonSet from "./ButtonSet";
+import FeedbackOptions from "./FeedbackOptions";
+import Notification from "./Notification";
+import Section from "./Section";
 import Statistics from "./Statistics";
 
 export class StatefulComponent extends React.Component {
@@ -22,19 +24,27 @@ export class StatefulComponent extends React.Component {
         return this.state.good + this.state.neutral + this.state.bad;
     }
     countPositiveFeedbackPercentage = () => {
-        return Math.ceil(this.state.good * 100 / (this.state.good + this.state.neutral + this.state.bad));
+        return Math.ceil(this.state.good * 100 / this.countTotalFeedback());
     }
 
     render() {
-        return <div>
-            <ButtonSet
-                onIncrement={this.onIncrement} />
-            <Statistics
-                good={this.state.good}
-                neutral={this.state.neutral}
-                bad={this.state.bad}
-                total={this.countTotalFeedback()}
-                positive={this.countPositiveFeedbackPercentage() || 0} />            
-        </div>
+        return <><Section
+            title={'Please leave feedback'}>
+                <FeedbackOptions
+                options={Object.keys(this.state)}
+                onLeaveFeedback={this.onIncrement} />
+        </Section>
+            {this.countTotalFeedback() === 0 ?
+                <Notification
+                    message={'There is no feedback'} /> :
+                <Section
+                    title={'Statistics'}>
+                    <Statistics
+                        good={this.state.good}
+                        neutral={this.state.neutral}
+                        bad={this.state.bad}
+                        total={this.countTotalFeedback()}
+                        positivePercentage={this.countPositiveFeedbackPercentage() || 0} />
+                </Section>} </>
     }
 }
