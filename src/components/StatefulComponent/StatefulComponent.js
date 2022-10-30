@@ -21,6 +21,9 @@ export class StatefulComponent extends React.Component {
     countTotalFeedback = () => {
         return this.state.good + this.state.neutral + this.state.bad;
     }
+    countPositiveFeedbackPercentage = () => {
+        return Math.ceil(this.state.good * 100 / (this.state.good + this.state.neutral + this.state.bad));
+    }
 
     render() {
         return <div>
@@ -30,7 +33,8 @@ export class StatefulComponent extends React.Component {
                 good={this.state.good}
                 neutral={this.state.neutral}
                 bad={this.state.bad}
-                total={this.countTotalFeedback()} />            
+                total={this.countTotalFeedback()}
+                positive={this.countPositiveFeedbackPercentage() || 0} />            
         </div>
     }
 }
